@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var watch = require('gulp-watch');
 var util = require('gulp-util');
-var concat = require('gulp-concat');
+var concat = require('gulp-concat-util');
 var ptu = require('gulp-pug-template-underscore');
 var pug = require('gulp-pug');
 var sass = require('gulp-sass');
@@ -24,6 +24,8 @@ var javascriptTasks = function () {
     'src/javascripts/routes/**/*.js'
   ])
     .pipe(concat('app.js'))
+    .pipe(concat.header("(function(window) {\n"))
+    .pipe(concat.footer("\n})(window);"))
     .pipe(ptu({templateDirPath: 'src/pug/templates'}))
     .pipe(gulp.dest('dest/javascripts')).on('end', function () {
     util.log('javascriptTasks done.')
