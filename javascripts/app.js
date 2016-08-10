@@ -1,3 +1,4 @@
+(function(window){
 /*eslint-disable no-unused-vars*/
 /*!
  * jQuery JavaScript Library v3.1.0
@@ -14131,3 +14132,4 @@ app.routes.TodoRouter = Backbone.Router.extend({
 		app.todos.trigger('filter');
 	}
 });
+})(window);
